@@ -67,11 +67,14 @@ public class Iiwa_ros2 extends RoboticsAPIApplication {
     @Inject
     private MediaFlangeIOGroup _medflange;
     
+    @Inject
+    @Named("Gripper") Tool _Gripper;
+
     PositionHold posHold;
     FRIJointOverlay jointOverlay;
 
 	private static final JointPosition INITIAL_POSITION = new JointPosition(0.0,-0.7854,0.0,1.3962,0.0,0.6109,0.0);
-    private static final String CLIENT_IP = "192.170.10.5";
+    private static final String CLIENT_IP = "172.31.1.138";
 	private static final double TS = 5; //in ms
     
     IFRISessionListener listener = new IFRISessionListener(){
@@ -97,7 +100,7 @@ public class Iiwa_ros2 extends RoboticsAPIApplication {
         // *** change next line to the FRIClient's IP address                 ***
         // **********************************************************************
         _clientName = CLIENT_IP;
-        _lbr.attachTo(_lbr.getFlange());
+        _Gripper.attachTo(_lbr.getFlange());
 	}
 	
 
